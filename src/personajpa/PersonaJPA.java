@@ -52,9 +52,9 @@ public class PersonaJPA {
             pc.Insertar(persona2);
             pc.Consulta();
             //2n DESCOMENTEM LES 3 LINIES SEGUENTS, EXECUTEM LA @NamedQuery
-            String nom = "Emilio";
-            Persona p = pc.BuscarPerNom(nom); //PRIMER IDPERSONA
-            pc.imprimirPersona(p);
+            //String nom = "Emilio";
+            //Persona p = pc.BuscarPerNom(nom); //PRIMER IDPERSONA
+            //pc.imprimirPersona(p);
 
             //3r DESCOMENTEM LES 8 LINIES SEGUENTS, OBTENIM ELS IDPERSONA CREATS A LA BBDD I ELS MODIFIQUEM
 //            Persona p = pc.Buscar(722L); //PRIMER IDPERSONA

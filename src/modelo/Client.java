@@ -16,10 +16,9 @@ import javax.persistence.Table;
 
 
 @Entity
-@NamedQueries({
-@NamedQuery(name="ClientNom", query="SELECT p FROM Persona p WHERE p.nombre=:nombre")})
-//@NamedQuery(name = Client.CONSULTA, query = "SELECT c FROM Clientes c WHERE u.id=:id")})
-@Table(name = "M6UF2_PERSONES")
+@NamedQueries({@NamedQuery(name="clientId", query="SELECT c FROM Clientes c WHERE c.clientId=:id")})
+@Table(name = "CLIENTS")
+
 public class Client {
     
     private static final long serialVersionUID = 1L;
@@ -27,7 +26,7 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "clientId")
-    private Long id;
+    private Long clientId;
     
     //public static final String CONSULTA = "PersonaNombre";
     
@@ -41,7 +40,7 @@ public class Client {
     private Adreca adreca;
 
     public Client(Long id, String nombre, String apellidos, String carrer, int numero, String poblacio) {
-        this.id = id;
+        this.clientId = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.adreca = new Adreca(carrer, numero, poblacio);
@@ -54,8 +53,8 @@ public class Client {
         return serialVersionUID;
     }
 
-    public Long getId() {
-        return id;
+    public Long getClientId() {
+        return clientId;
     }
 
     public String getNombre() {
@@ -70,8 +69,8 @@ public class Client {
         return adreca;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
     }
 
     public void setNombre(String nombre) {
@@ -89,7 +88,7 @@ public class Client {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 47 * hash + Objects.hashCode(this.id);
+        hash = 47 * hash + Objects.hashCode(this.clientId);
         return hash;
     }
 
@@ -105,10 +104,17 @@ public class Client {
             return false;
         }
         final Client other = (Client) obj;
-        if (!Objects.equals(this.id, other.id)) {
+        if (!Objects.equals(this.clientId, other.clientId)) {
             return false;
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Client{" + "clientId=" + clientId + ", nombre=" + nombre + ", apellidos=" + apellidos + ", adreca=" + adreca + '}';
+    }
+    
+    
 
 }

@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.Embeddable;
  
 @Embeddable
-@Table (name = "M6UF2_DIRECCIONS")
+@Table (name = "ADRECES")
 public class Adreca{
 
     private String carrer;

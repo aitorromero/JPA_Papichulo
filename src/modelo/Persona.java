@@ -28,7 +28,7 @@ import javax.persistence.Table;
 @NamedQuery(name=Persona.CONSULTA, query="SELECT p FROM Persona p WHERE p.nombre=:nombre")})
 //@NamedQuery(name=Persona.CONSULTA, query="SELECT p FROM Persona p WHERE p.nombre=:nombre"),
 //segunda query, tercera...})
-@Table(name = "M6UF2_PERSONES")
+@Table(name = "PERSONES")
 public class Persona implements Serializable {
 
     private static final long serialVersionUID = 1L;
