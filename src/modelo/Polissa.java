@@ -42,11 +42,13 @@ public class Polissa {
     @Column(name = "numeroPolissa", length = 10)
     private String numeroPolissa;
     
-    @Column(name = "prenedorPolissa", nullable = false)
+    @OneToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name = "prenedorPolissa", nullable = false)
     @Basic(fetch = FetchType.LAZY)
     private Client prenedor;
 
-    @Column(name = "vehiclePolissa", nullable = false)
+    @OneToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name = "vehiclePolissa", nullable = false)
     @Basic(fetch = FetchType.LAZY)
     private Vehicle vehiclePolissa;
 
@@ -61,11 +63,8 @@ public class Polissa {
     
     @Column(name = "primaPolissa")
     private double primaPolissa;
-    
-    @Column(name = "coverturesPolissa")
-    private ArrayList listaCovertures;
 
-    public Polissa(Long polissaId, String numeroPolissa, Client prenedor, Vehicle vehiclePolissa, Calendar dataIniciPolissa, Calendar dataFiPolissa, boolean tipusPolissa, double primaPolissa, ArrayList listaCovertures) {
+    public Polissa(Long polissaId, String numeroPolissa, Client prenedor, Vehicle vehiclePolissa, Calendar dataIniciPolissa, Calendar dataFiPolissa, boolean tipusPolissa, double primaPolissa) {
         this.polissaId = polissaId;
         this.numeroPolissa = numeroPolissa;
         this.prenedor = prenedor;
@@ -74,7 +73,6 @@ public class Polissa {
         this.dataFiPolissa = dataFiPolissa;
         this.tipusPolissa = tipusPolissa;
         this.primaPolissa = primaPolissa;
-        this.listaCovertures = listaCovertures;
     }
 
     public Polissa() {
@@ -116,10 +114,6 @@ public class Polissa {
         return primaPolissa;
     }
 
-    public ArrayList getListaCovertures() {
-        return listaCovertures;
-    }
-
     public void setPolissaId(Long polissaId) {
         this.polissaId = polissaId;
     }
@@ -152,10 +146,6 @@ public class Polissa {
         this.primaPolissa = primaPolissa;
     }
 
-    public void setListaCovertures(ArrayList listaCovertures) {
-        this.listaCovertures = listaCovertures;
-    }
-
     @Override
     public int hashCode() {
         int hash = 3;
@@ -183,7 +173,7 @@ public class Polissa {
 
     @Override
     public String toString() {
-        return "Polissa{" + "polissaId=" + polissaId + ", numeroPolissa=" + numeroPolissa + ", prenedor=" + prenedor + ", vehiclePolissa=" + vehiclePolissa + ", dataIniciPolissa=" + dataIniciPolissa + ", dataFiPolissa=" + dataFiPolissa + ", tipusPolissa=" + tipusPolissa + ", primaPolissa=" + primaPolissa + ", listaCovertures=" + listaCovertures + '}';
+        return "Polissa{" + "polissaId=" + polissaId + ", numeroPolissa=" + numeroPolissa + ", prenedor=" + prenedor + ", vehiclePolissa=" + vehiclePolissa + ", dataIniciPolissa=" + dataIniciPolissa + ", dataFiPolissa=" + dataFiPolissa + ", tipusPolissa=" + tipusPolissa + ", primaPolissa=" + primaPolissa + '}';
     }
 
     

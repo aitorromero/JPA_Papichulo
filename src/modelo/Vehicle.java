@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -18,28 +19,31 @@ import javax.persistence.Table;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name="VehicleId", query="SELECT v FROM Vehicles v WHERE v.vehicleId=:id")})
+   @NamedQuery(name="VehicleId", query="SELECT v FROM Vehicle v WHERE v.vehicleId=:vehicleId")})
 @Table(name = "VEHICLES")
 public class Vehicle implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "vehicleId")
     private Long vehicleId;
     
-    //public static final String CONSULTA = "VehicleId";
+    public static final String CONSULTA = "VehicleId";
     
     @Column(name = "matricula", length = 7, unique = true, nullable = false)
     private String matricula;
 
-    @Column(name = "marcamodel", length = 50, nullable = false)
+    @Column(name = "marcamodel", length = 40, nullable = false)
     private String marcaModel;
 
-    @Column(name = "anyFabricacio")
+    @Column(name = "anyFabricacio", length = 30)
     private int anyFabricacio;
-
+    
+    @OneToOne//(fetch = FetchType.LAZY)
     @Column(name = "propietari")
-    @Basic(fetch = FetchType.LAZY)
+    //@Basic(fetch = FetchType.LAZY)
     private Client propietari;
 
     public Vehicle(Long vehicleId, String matricula, String marcaModel, int anyFabricacio, Client propietari) {
@@ -94,7 +98,6 @@ public class Vehicle implements Serializable {
         this.propietari = propietari;
     }
 
-    
     
     @Override
     public int hashCode() {
