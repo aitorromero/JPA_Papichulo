@@ -1,5 +1,6 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -19,17 +20,17 @@ import javax.persistence.Table;
 
 
 @Entity
-@NamedQueries({@NamedQuery(name=Client.CONSULTA, query="SELECT p FROM Clients p WHERE p.nomClient=:nombreCliente")})
-@Table(name = "CLIENTS")
+//@NamedQueries({@NamedQuery(name=Client.CONSULTA, query="SELECT p FROM Client p WHERE p.nombre=:nombreClient")})
+@Table(name = "CLIENT")
 
-public class Client {
+public class Client implements Serializable {
     
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "clientId")
-    private Long clientId;
+    private long clientId;
     
     public static final String CONSULTA = "ClientNombre";
     
@@ -42,8 +43,8 @@ public class Client {
     @Embedded
     private Adreca adreca;
     
-    @OneToMany(mappedBy="vehicles" )
-    List<Vehicle> vList = new ArrayList<>();
+    @OneToMany(mappedBy="propietari" )
+    List<Vehicle> vList;
 
     public Client(Long clientId, String clientNif, String nombre, Adreca adreca) {
         this.clientId = clientId;
@@ -59,7 +60,7 @@ public class Client {
         return serialVersionUID;
     }
 
-    public Long getClientId() {
+    public long getClientId() {
         return clientId;
     }
 

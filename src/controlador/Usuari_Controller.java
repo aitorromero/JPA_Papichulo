@@ -34,7 +34,7 @@ public class Usuari_Controller {
         System.out.println("close");
         em.close();
     }
-
+/*
     public void Modificar(Usuari u) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
@@ -117,7 +117,7 @@ public class Usuari_Controller {
 
         System.out.println("Consulta");
         //List<Persona> lista = (List<Persona>) em.createQuery("FROM Persona").getResultList();
-        Query q = em.createQuery("FROM Vehicle");
+        Query q = em.createQuery("FROM Usuari");    
         List<Vehicle> lista = (List<Vehicle>) q.getResultList();
         imprimirLista(lista);
 
@@ -135,5 +135,5 @@ public class Usuari_Controller {
     public void imprimirPersona(Vehicle v) {
         System.out.println(v);
     }
-
+*/
 }

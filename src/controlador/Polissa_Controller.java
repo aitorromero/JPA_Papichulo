@@ -12,7 +12,7 @@ import modelo.*;
  */
 public class Polissa_Controller {
 
-    public void Insertar(Polissa p) {
+    /*public void Insertar(Polissa p) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
         EntityManager em = oem.getEntityManager();
@@ -102,7 +102,7 @@ public class Polissa_Controller {
         System.out.println("Busqueda per nom");
         //Query query = em.createNamedQuery("PersonaNom",Persona.class);
         Query query = em.createNamedQuery(Polissa.CONSULTA,Polissa.class);
-        query.setParameter("nombre", nom);
+        query.setParameter("id", nom);
         Polissa p = (Polissa) query.getSingleResult();
 
         System.out.println("close");
@@ -135,5 +135,5 @@ public class Polissa_Controller {
     public void imprimirPersona(Persona p) {
         System.out.println(p);
     }
-
+*/
 }

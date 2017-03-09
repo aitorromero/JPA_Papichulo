@@ -34,7 +34,7 @@ public class Persona_Controller {
         System.out.println("close");
         em.close();
     }
-
+/*
     public void Modificar(Persona p) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
@@ -94,7 +94,7 @@ public class Persona_Controller {
 
         return p;
     }
-    
+   */ 
     public Persona BuscarPerNom(String nom) {
         // Recupera el entity manager
         EntityManager em = new EM_Controller().getEntityManager();

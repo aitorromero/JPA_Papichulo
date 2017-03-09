@@ -1,5 +1,6 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Objects;
@@ -18,10 +19,10 @@ import javax.persistence.Table;
 
 @Entity 
 @NamedQueries({
-    @NamedQuery(name="AsseguradoraId", query="SELECT a FROM Asseguradres a WHERE a.asseguradoraId=:id")})
-@Table(name = "ASSEGURADORES")
+    @NamedQuery(name=Asseguradora.CONSULTA, query="SELECT a FROM Asseguradora a WHERE a.asseguradoraId=:id")})
+@Table(name = "ASSEGURADORA")
 
-public class Asseguradora {
+public class Asseguradora implements Serializable {
     
     private static final long serialVersionUID = 1L;
 
@@ -30,7 +31,7 @@ public class Asseguradora {
     @Column(name = "asseguradoraId")
     private Long asseguradoraId;
     
-    //public static final String CONSULTA = "PersonaNombre";
+    public static final String CONSULTA = "AsseguradoraId";
     
     @Column(name = "nomAsseguradora", length = 100, unique = true)
     private String nomAsseguradora;

@@ -13,47 +13,69 @@ import javax.persistence.Table;
 
 @Entity
 @NamedQueries({
-@NamedQuery(name=Persona.CONSULTA, query="SELECT u FROM Usuari u WHERE u.usuariNom=:usuariNom")})
-@Table(name = "USUARIS")
+@NamedQuery(name=Usuari.CONSULTA, query="SELECT u FROM Usuari u WHERE u.nom=:usuariNom")})
+@Table(name = "USUARI")
 public class Usuari implements Serializable {
     
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "usuariId")
+    private Long usuariId;
+        
     @Column(name = "usuariNom", length = 30, nullable = false)
     private String nom;
-    
+
     public static final String CONSULTA = "UsuariId";
     
     @Column(name = "usuariPass", length = 30, nullable = false)
     private String pass;
 
-    public Usuari(String nom, String pass) {
-        this.nom=nom;
-        this.pass=pass;
+    public Usuari() {
     }
-    
-    public Usuari(){}
-    
+
+    public Usuari(long usuariId, String nom, String pass) {
+        this.usuariId = usuariId;
+        this.nom = nom;
+        this.pass = pass;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public Long getUsuariId() {
+        return usuariId;
+    }
+
     public String getNom() {
         return nom;
+    }
+
+    public static String getCONSULTA() {
+        return CONSULTA;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+    
+    public void setUsuariId(Long usuariId) {
+        this.usuariId = usuariId;
     }
 
     public void setNom(String nom) {
         this.nom = nom;
     }
-    
-    public String getPass(){
-        return pass;
-    }
-    
-    public void setPas(String nom){
+
+    public void setPass(String pass) {
         this.pass = pass;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 41 * hash + Objects.hashCode(this.nom);
+        int hash = 5;
+        hash = 67 * hash + Objects.hashCode(this.usuariId);
         return hash;
     }
 
@@ -69,18 +91,17 @@ public class Usuari implements Serializable {
             return false;
         }
         final Usuari other = (Usuari) obj;
-        if (!Objects.equals(this.nom, other.nom)) {
+        if (!Objects.equals(this.usuariId, other.usuariId)) {
             return false;
         }
         return true;
     }
 
-    
-    
     @Override
     public String toString() {
-        return "Usuari{" + "nom=" + nom + ", pass=" + pass + '}';
+        return "Usuari{" + "usuariId=" + usuariId + ", nom=" + nom + ", pass=" + pass + '}';
     }
+    
     
     
 }

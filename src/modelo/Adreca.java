@@ -14,8 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.Embeddable;
  
 @Embeddable
-@Table (name = "ADRECES")
-public class Adreca{
+@Table (name = "ADRECA")
+public class Adreca implements Serializable{
 
     private String carrer;
     private int numero;

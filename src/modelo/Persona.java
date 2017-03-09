@@ -37,7 +37,9 @@ public class Persona implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "personaId")
     private Long id;
+    
     public static final String CONSULTA = "PersonaNombre";
+    
     @Column(name = "personaNombre", length = 20, nullable = false)
     private String nombre;
 

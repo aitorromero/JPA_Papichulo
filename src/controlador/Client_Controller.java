@@ -34,7 +34,7 @@ public class Client_Controller {
         System.out.println("close");
         em.close();
     }
-
+/*
     public void Modificar(Client c) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
@@ -102,7 +102,7 @@ public class Client_Controller {
         System.out.println("Busqueda per nom");
         //Query query = em.createNamedQuery("PersonaNom",Persona.class);
         Query query = em.createNamedQuery(Client.CONSULTA,Client.class);
-        query.setParameter("nombreCliente", nom);
+        query.setParameter("nombreClient", nom);
         Client c = (Client) query.getSingleResult();
 
         System.out.println("close");
@@ -135,5 +135,5 @@ public class Client_Controller {
     public void imprimirClient(Client c) {
         System.out.println(c);
     }
-
+*/
 }

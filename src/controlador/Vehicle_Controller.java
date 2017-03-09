@@ -34,7 +34,7 @@ public class Vehicle_Controller {
         System.out.println("close");
         em.close();
     }
-
+/*
     public void Modificar(Vehicle v) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
@@ -135,5 +135,5 @@ public class Vehicle_Controller {
     public void imprimirVehicle(Vehicle v) {
         System.out.println(v);
     }
-
+*/
 }

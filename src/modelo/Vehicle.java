@@ -19,8 +19,8 @@ import javax.persistence.Table;
 
 @Entity
 @NamedQueries({
-   @NamedQuery(name="VehicleId", query="SELECT v FROM Vehicle v WHERE v.vehicleId=:vehicleId")})
-@Table(name = "VEHICLES")
+   @NamedQuery(name=Vehicle.CONSULTA, query="SELECT v FROM Vehicle v WHERE v.vehicleId=:vehicleId")})
+@Table(name = "VEHICLE")
 public class Vehicle implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,9 +41,10 @@ public class Vehicle implements Serializable {
     @Column(name = "anyFabricacio", length = 30)
     private int anyFabricacio;
     
-    @OneToOne//(fetch = FetchType.LAZY)
-    @Column(name = "propietari")
-    //@Basic(fetch = FetchType.LAZY)
+    //@OneToOne//(fetch = FetchType.LAZY)
+    //@Column(name = "propietari")
+    @ManyToOne
+    @JoinColumn(name="vehiclePropietari")
     private Client propietari;
 
     public Vehicle(Long vehicleId, String matricula, String marcaModel, int anyFabricacio, Client propietari) {
