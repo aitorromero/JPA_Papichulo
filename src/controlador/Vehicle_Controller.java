@@ -12,7 +12,7 @@ import modelo.*;
  */
 public class Vehicle_Controller {
 
-    public void Insertar(Persona p) {
+    public void Insertar(Vehicle v) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
         EntityManager em = oem.getEntityManager();
@@ -25,7 +25,7 @@ public class Vehicle_Controller {
         etx.begin();
 
         System.out.println("persist");
-        em.persist(p);
+        em.persist(v);
 
         System.out.println("commit");
         //em.getTransaction().commit();
@@ -35,7 +35,7 @@ public class Vehicle_Controller {
         em.close();
     }
 
-    public void Modificar(Persona p) {
+    public void Modificar(Vehicle v) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
         EntityManager em = oem.getEntityManager();
@@ -48,7 +48,7 @@ public class Vehicle_Controller {
         etx.begin();
 
         System.out.println("merge");
-        em.merge(p);
+        em.merge(v);
 
         System.out.println("commit");
         //em.getTransaction().commit();
@@ -58,7 +58,7 @@ public class Vehicle_Controller {
         em.close();
     }
 
-    public void Eliminar(Persona p) {
+    public void Eliminar(Vehicle v) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
         EntityManager em = oem.getEntityManager();
@@ -71,7 +71,7 @@ public class Vehicle_Controller {
         etx.begin();
 
         System.out.println("remove");
-        em.remove(em.contains(p) ? p : em.merge(p));
+        em.remove(em.contains(v) ? v : em.merge(v));
 
         System.out.println("commit");
         //em.getTransaction().commit();
@@ -81,18 +81,18 @@ public class Vehicle_Controller {
         em.close();
     }
 
-    public Persona Buscar(Long id) {
+    public Vehicle Buscar(Long id) {
         // Recupera el entity manager
         EntityManager em = new EM_Controller().getEntityManager();
 
         System.out.println("busqueda");
 
-        Persona p = (Persona) em.find(Persona.class, id);
+        Vehicle v = (Vehicle) em.find(Vehicle.class, id);
 
         System.out.println("close");
         em.close();
 
-        return p;
+        return v;
     }
     
     public Vehicle BuscarPerNom(String nom) {
@@ -101,7 +101,7 @@ public class Vehicle_Controller {
 
         System.out.println("Busqueda per nom");
         //Query query = em.createNamedQuery("PersonaNom",Persona.class);
-        Query query = em.createNamedQuery(Persona.CONSULTA,Persona.class);
+        Query query = em.createNamedQuery(Vehicle.CONSULTA,Vehicle.class);
         query.setParameter("vehicleId", nom);
         Vehicle v = (Vehicle) query.getSingleResult();
 
@@ -132,7 +132,7 @@ public class Vehicle_Controller {
         }
     }
 
-    public void imprimirPersona(Vehicle v) {
+    public void imprimirVehicle(Vehicle v) {
         System.out.println(v);
     }
 

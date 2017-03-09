@@ -10,9 +10,9 @@ import modelo.*;
  *
  * @author Jorge
  */
-public class Polissa_Controller {
+public class Usuari_Controller {
 
-    public void Insertar(Polissa p) {
+    public void Insertar(Usuari u) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
         EntityManager em = oem.getEntityManager();
@@ -25,7 +25,7 @@ public class Polissa_Controller {
         etx.begin();
 
         System.out.println("persist");
-        em.persist(p);
+        em.persist(u);
 
         System.out.println("commit");
         //em.getTransaction().commit();
@@ -35,7 +35,7 @@ public class Polissa_Controller {
         em.close();
     }
 
-    public void Modificar(Polissa p) {
+    public void Modificar(Usuari u) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
         EntityManager em = oem.getEntityManager();
@@ -48,7 +48,7 @@ public class Polissa_Controller {
         etx.begin();
 
         System.out.println("merge");
-        em.merge(p);
+        em.merge(u);
 
         System.out.println("commit");
         //em.getTransaction().commit();
@@ -58,7 +58,7 @@ public class Polissa_Controller {
         em.close();
     }
 
-    public void Eliminar(Polissa p) {
+    public void Eliminar(Usuari u) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
         EntityManager em = oem.getEntityManager();
@@ -71,7 +71,7 @@ public class Polissa_Controller {
         etx.begin();
 
         System.out.println("remove");
-        em.remove(em.contains(p) ? p : em.merge(p));
+        em.remove(em.contains(u) ? u : em.merge(u));
 
         System.out.println("commit");
         //em.getTransaction().commit();
@@ -81,34 +81,34 @@ public class Polissa_Controller {
         em.close();
     }
 
-    public Polissa Buscar(Long id) {
+    public Usuari Buscar(Long id) {
         // Recupera el entity manager
         EntityManager em = new EM_Controller().getEntityManager();
 
         System.out.println("busqueda");
 
-        Polissa p = (Polissa) em.find(Polissa.class, id);
+        Usuari u = (Usuari) em.find(Usuari.class, id);
 
         System.out.println("close");
         em.close();
 
-        return p;
+        return u;
     }
     
-    public Polissa BuscarPerNom(String nom) {
+    public Usuari BuscarPerNom(String nom) {
         // Recupera el entity manager
         EntityManager em = new EM_Controller().getEntityManager();
 
         System.out.println("Busqueda per nom");
         //Query query = em.createNamedQuery("PersonaNom",Persona.class);
-        Query query = em.createNamedQuery(Polissa.CONSULTA,Polissa.class);
-        query.setParameter("nombre", nom);
-        Polissa p = (Polissa) query.getSingleResult();
+        Query query = em.createNamedQuery(Usuari.CONSULTA,Usuari.class);
+        query.setParameter("UsuariNom", nom);
+        Usuari u = (Usuari) query.getSingleResult();
 
         System.out.println("close");
         em.close();
 
-        return p;
+        return u;
     }
 
     public void Consulta() {
@@ -117,23 +117,23 @@ public class Polissa_Controller {
 
         System.out.println("Consulta");
         //List<Persona> lista = (List<Persona>) em.createQuery("FROM Persona").getResultList();
-        Query q = em.createQuery("FROM Persona");
-        List<Persona> lista = (List<Persona>) q.getResultList();
+        Query q = em.createQuery("FROM Vehicle");
+        List<Vehicle> lista = (List<Vehicle>) q.getResultList();
         imprimirLista(lista);
 
         System.out.println("close");
         em.close();
     }
 
-    public void imprimirLista(List<Persona> lista) {
-        System.out.println("Numero d'empleats= " + lista.size());
+    public void imprimirLista(List<Vehicle> lista) {
+        System.out.println("Numero de vehicles= " + lista.size());
         for (int i = 0; i < lista.size(); i++) {
             System.out.println(lista.get(i));
         }
     }
 
-    public void imprimirPersona(Persona p) {
-        System.out.println(p);
+    public void imprimirPersona(Vehicle v) {
+        System.out.println(v);
     }
 
 }

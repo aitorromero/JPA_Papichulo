@@ -21,10 +21,11 @@ import org.hibernate.annotations.IndexColumn;
 
 @Entity 
 @NamedQueries({
-    @NamedQuery(name="PolissaId", query="SELECT p FROM Polisses p WHERE p.polissaId=:id"),
-    @NamedQuery(name="PolissaClient", query="SELECT p FROM Polisses p WHERE p.prenedorPolissa=:nombre"),
-    @NamedQuery(name="PolissaVehicle", query="SELECT p FROM Polisses p WHERE p.dataIniciPolissa=:dataActucal AND p.dataIniciPolissa=:dataActucal"),
-    @NamedQuery(name="PolissaVigent", query="SELECT p FROM Polisses p WHERE p.dataFiPolissa=:dataActucal AND p.dataFiPolissa=:dataActucal")})
+    @NamedQuery(name=Polissa.CONSULTA, query="SELECT p FROM Polisses p WHERE p.polissaId=:id")
+//    @NamedQuery(name="PolissaClient", query="SELECT p FROM Polisses p WHERE p.prenedorPolissa=:nombre"),
+//    @NamedQuery(name="PolissaVehicle", query="SELECT p FROM Polisses p WHERE p.dataIniciPolissa=:dataActucal AND p.dataIniciPolissa=:dataActucal"),
+//    @NamedQuery(name="PolissaVigent", query="SELECT p FROM Polisses p WHERE p.dataFiPolissa=:dataActucal AND p.dataFiPolissa=:dataActucal")
+})
 
 @Table(name = "POLISSES", indexes = {@Index(columnList = "prenedorPolissa", name="indexPrenedorPolissa" )})
 
@@ -37,7 +38,7 @@ public class Polissa {
     @Column(name = "polissaId")
     private Long polissaId;
     
-    //public static final String CONSULTA = "PersonaNombre";
+    public static final String CONSULTA = "PersonaNombre";
 
     @Column(name = "numeroPolissa", length = 10)
     private String numeroPolissa;

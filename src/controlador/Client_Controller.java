@@ -12,7 +12,7 @@ import modelo.*;
  */
 public class Client_Controller {
 
-    public void Insertar(Persona p) {
+    public void Insertar(Client c) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
         EntityManager em = oem.getEntityManager();
@@ -25,7 +25,7 @@ public class Client_Controller {
         etx.begin();
 
         System.out.println("persist");
-        em.persist(p);
+        em.persist(c);
 
         System.out.println("commit");
         //em.getTransaction().commit();
@@ -35,7 +35,7 @@ public class Client_Controller {
         em.close();
     }
 
-    public void Modificar(Persona p) {
+    public void Modificar(Client c) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
         EntityManager em = oem.getEntityManager();
@@ -48,7 +48,7 @@ public class Client_Controller {
         etx.begin();
 
         System.out.println("merge");
-        em.merge(p);
+        em.merge(c);
 
         System.out.println("commit");
         //em.getTransaction().commit();
@@ -58,7 +58,7 @@ public class Client_Controller {
         em.close();
     }
 
-    public void Eliminar(Persona p) {
+    public void Eliminar(Client c) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
         EntityManager em = oem.getEntityManager();
@@ -71,7 +71,7 @@ public class Client_Controller {
         etx.begin();
 
         System.out.println("remove");
-        em.remove(em.contains(p) ? p : em.merge(p));
+        em.remove(em.contains(c) ? c : em.merge(c));
 
         System.out.println("commit");
         //em.getTransaction().commit();
@@ -81,18 +81,18 @@ public class Client_Controller {
         em.close();
     }
 
-    public Persona Buscar(Long id) {
+    public Client Buscar(Long id) {
         // Recupera el entity manager
         EntityManager em = new EM_Controller().getEntityManager();
 
         System.out.println("busqueda");
 
-        Persona p = (Persona) em.find(Persona.class, id);
+        Client c = (Client) em.find(Client.class, id);
 
         System.out.println("close");
         em.close();
 
-        return p;
+        return c;
     }
     
     public Client BuscarPerNom(String nom) {
@@ -101,7 +101,7 @@ public class Client_Controller {
 
         System.out.println("Busqueda per nom");
         //Query query = em.createNamedQuery("PersonaNom",Persona.class);
-        Query query = em.createNamedQuery(Persona.CONSULTA,Client.class);
+        Query query = em.createNamedQuery(Client.CONSULTA,Client.class);
         query.setParameter("nombreCliente", nom);
         Client c = (Client) query.getSingleResult();
 

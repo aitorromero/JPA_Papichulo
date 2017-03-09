@@ -19,7 +19,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@NamedQueries({@NamedQuery(name=Persona.CONSULTA, query="SELECT p FROM Clients p WHERE p.nomClient=:nombreCliente")})
+@NamedQueries({@NamedQuery(name=Client.CONSULTA, query="SELECT p FROM Clients p WHERE p.nomClient=:nombreCliente")})
 @Table(name = "CLIENTS")
 
 public class Client {
