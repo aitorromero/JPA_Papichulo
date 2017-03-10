@@ -18,19 +18,18 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@NamedQueries({
-   @NamedQuery(name=Vehicle.CONSULTA, query="SELECT v FROM Vehicle v WHERE v.vehicleId=:vehicleId")})
+//@NamedQueries({
+//   @NamedQuery(name=Vehicle.CONSULTA, query="SELECT v FROM Vehicle v WHERE v.vehicleId=:vehicleId")})
 @Table(name = "VEHICLE")
 public class Vehicle implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    public static final String CONSULTA = "VehicleId";
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "vehicleId")
     private Long vehicleId;
-    
-    public static final String CONSULTA = "VehicleId";
     
     @Column(name = "matricula", length = 7, unique = true, nullable = false)
     private String matricula;
@@ -40,9 +39,7 @@ public class Vehicle implements Serializable {
 
     @Column(name = "anyFabricacio", length = 30)
     private int anyFabricacio;
-    
-    //@OneToOne//(fetch = FetchType.LAZY)
-    //@Column(name = "propietari")
+
     @ManyToOne
     @JoinColumn(name="vehiclePropietari")
     private Client propietari;

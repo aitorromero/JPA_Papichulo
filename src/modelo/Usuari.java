@@ -12,23 +12,24 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@NamedQueries({
-@NamedQuery(name=Usuari.CONSULTA, query="SELECT u FROM Usuari u WHERE u.nom=:usuariNom")})
+//@NamedQueries({
+//@NamedQuery(name=Usuari.CONSULTA, query="SELECT u FROM Usuari u WHERE u.nom=:usuariNom")})
 @Table(name = "USUARI")
 public class Usuari implements Serializable {
     
     private static final long serialVersionUID = 1L;
+    //public static final String CONSULTA = "UsuariId";
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "usuariId")
+    
     private Long usuariId;
         
-    @Column(name = "usuariNom", length = 30, nullable = false)
+    @Column(name = "usuariNom", length = 30)
     private String nom;
 
-    public static final String CONSULTA = "UsuariId";
     
-    @Column(name = "usuariPass", length = 30, nullable = false)
+    @Column(name = "usuariPass", length = 30)
     private String pass;
 
     public Usuari() {
@@ -50,10 +51,6 @@ public class Usuari implements Serializable {
 
     public String getNom() {
         return nom;
-    }
-
-    public static String getCONSULTA() {
-        return CONSULTA;
     }
 
     public String getPass() {

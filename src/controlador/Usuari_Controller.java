@@ -24,8 +24,8 @@ public class Usuari_Controller {
         System.out.println("begin");
         etx.begin();
 
-        System.out.println("persist");
-        em.persist(u);
+        System.out.println("merge");
+        em.merge(u);
 
         System.out.println("commit");
         //em.getTransaction().commit();

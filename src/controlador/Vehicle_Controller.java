@@ -24,8 +24,8 @@ public class Vehicle_Controller {
         System.out.println("begin");
         etx.begin();
 
-        System.out.println("persist");
-        em.persist(v);
+        System.out.println("merge");
+        em.merge(v);
 
         System.out.println("commit");
         //em.getTransaction().commit();

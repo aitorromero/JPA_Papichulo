@@ -24,8 +24,8 @@ public class Client_Controller {
         System.out.println("begin");
         etx.begin();
 
-        System.out.println("persist");
-        em.persist(c);
+        System.out.println("merge");
+        em.merge(c);
 
         System.out.println("commit");
         //em.getTransaction().commit();

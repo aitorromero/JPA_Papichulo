@@ -26,18 +26,17 @@ import javax.persistence.Table;
 public class Client implements Serializable {
     
     private static final long serialVersionUID = 1L;
-
+    public static final String CONSULTA = "ClientNombre";
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "clientId")
-    private long clientId;
+    private long clientId;   
     
-    public static final String CONSULTA = "ClientNombre";
-    
-    @Column(name = "clientNif", length = 9, nullable = false)
+    @Column(name = "clientNif", length = 9)
     private String clientNif;
 
-    @Column(name = "nomClient", length = 50, nullable = false)
+    @Column(name = "nomClient", length = 50)
     private String nombre;
     
     @Embedded

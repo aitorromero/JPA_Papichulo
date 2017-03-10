@@ -18,8 +18,8 @@ import javax.persistence.Table;
 
 
 @Entity 
-@NamedQueries({
-    @NamedQuery(name=Asseguradora.CONSULTA, query="SELECT a FROM Asseguradora a WHERE a.asseguradoraId=:id")})
+//@NamedQueries({
+//    @NamedQuery(name=Asseguradora.CONSULTA, query="SELECT a FROM Asseguradora a WHERE a.asseguradoraId=:id")})
 @Table(name = "ASSEGURADORA")
 
 public class Asseguradora implements Serializable {

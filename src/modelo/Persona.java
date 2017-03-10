@@ -23,9 +23,9 @@ import javax.persistence.Table;
  * @author Jorge
  */
 @Entity
-@NamedQueries({
+//@NamedQueries({
 //@NamedQuery(name="PersonaNom", query="SELECT p FROM Persona p WHERE p.nombre=:nombre")})
-@NamedQuery(name=Persona.CONSULTA, query="SELECT p FROM Persona p WHERE p.nombre=:nombre")})
+//@NamedQuery(name=Persona.CONSULTA, query="SELECT p FROM Persona p WHERE p.nombre=:nombre")})
 //@NamedQuery(name=Persona.CONSULTA, query="SELECT p FROM Persona p WHERE p.nombre=:nombre"),
 //segunda query, tercera...})
 @Table(name = "PERSONES")

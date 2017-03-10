@@ -21,12 +21,12 @@ import javax.persistence.Table;
 import org.hibernate.annotations.IndexColumn;
 
 @Entity 
-@NamedQueries({
+//@NamedQueries({
     @NamedQuery(name=Polissa.CONSULTA, query="SELECT p FROM Polissa p WHERE p.polissaId=:id")
 //    @NamedQuery(name="PolissaClient", query="SELECT p FROM Polisses p WHERE p.prenedorPolissa=:nombre"),
 //    @NamedQuery(name="PolissaVehicle", query="SELECT p FROM Polisses p WHERE p.dataIniciPolissa=:dataActucal AND p.dataIniciPolissa=:dataActucal"),
 //    @NamedQuery(name="PolissaVigent", query="SELECT p FROM Polisses p WHERE p.dataFiPolissa=:dataActucal AND p.dataFiPolissa=:dataActucal")
-})
+//})
 
 @Table(name = "POLISSA", indexes = {@Index(columnList = "prenedorPolissa", name="indexPrenedorPolissa" )})
 

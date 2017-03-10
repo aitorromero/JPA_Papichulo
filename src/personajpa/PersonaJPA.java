@@ -16,22 +16,30 @@ public class PersonaJPA {
 
     public static void main(String[] args) {
         try {
-
+            //DROPS
+//            DROP TABLE ASSEGURADORA;
+//            DROP TABLE CLIENT;
+//            DROP TABLE DIRECCIONS;
+//            DROP TABLE PERSONES;
+//            DROP TABLE POLISSA;
+//            DROP TABLE USUARI;
+//            DROP TABLE VEHICLE;
             // Crea una nova persona
-           /* 
-            Usuari usu1 = new Usuari(0, "Manolo11", "1234");
             
-            Usuari_Controller usuC = new Usuari_Controller();
-            
-            usuC.Insertar(usu1);*/
+            Usuari usu1 = new Usuari(0, "Manolo121", "1234");            
+            Usuari_Controller usuC = new Usuari_Controller();            
+            usuC.Insertar(usu1);
             
             Adreca adr1 = new Adreca("Calle1", 1, "Poblacio");
             
-            Client cli1 = new Client(0l, "44444444A", "Manulo", adr1);
-            
-            Client_Controller cliC = new Client_Controller();
-            
+            Client cli1 = new Client("44444444A", "Manulo", adr1);
+            Client cli2 = new Client();
+            Client_Controller cliC = new Client_Controller();            
             cliC.Insertar(cli1);
+            
+            Vehicle_Controller veh = new Vehicle_Controller();            
+            Vehicle veh1 = new Vehicle(02L, "4444DDD", "MarcaModelo", 2017, cli1);
+            veh.Insertar(veh1);
             
 //            Persona persona1 = new Persona();
 //            persona1.setNombre("Jorge");
