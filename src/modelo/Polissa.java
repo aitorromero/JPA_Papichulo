@@ -20,53 +20,54 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.IndexColumn;
 
-@Entity 
-//@NamedQueries({
-    @NamedQuery(name=Polissa.CONSULTA, query="SELECT p FROM Polissa p WHERE p.polissaId=:id")
-//    @NamedQuery(name="PolissaClient", query="SELECT p FROM Polisses p WHERE p.prenedorPolissa=:nombre"),
-//    @NamedQuery(name="PolissaVehicle", query="SELECT p FROM Polisses p WHERE p.dataIniciPolissa=:dataActucal AND p.dataIniciPolissa=:dataActucal"),
-//    @NamedQuery(name="PolissaVigent", query="SELECT p FROM Polisses p WHERE p.dataFiPolissa=:dataActucal AND p.dataFiPolissa=:dataActucal")
-//})
+@Entity
+@NamedQueries({
+    @NamedQuery(name = "cercaPolizasCliente", query = "SELECT p FROM Polissa p WHERE p.cliente.id=:id")
+    ,
+@NamedQuery(name = "cercaPolizaPerVehicle", query = "SELECT p FROM Polissa p WHERE p.vehicle.vehicleId=:vehicle")})
 
-@Table(name = "POLISSA", indexes = {@Index(columnList = "prenedorPolissa", name="indexPrenedorPolissa" )})
+@Table(name = "POLISSA", indexes = {
+    @Index(columnList = "prenedorPolissa", name = "indexPrenedorPolissa")})
 
 public class Polissa implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "polissaId")
     private Long polissaId;
-    
+
     public static final String CONSULTA = "PolissaId";
 
     @Column(name = "numeroPolissa", length = 10)
     private String numeroPolissa;
-    
-    @OneToOne(fetch= FetchType.LAZY)
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prenedorPolissa", nullable = false)
-    @Basic(fetch = FetchType.LAZY)
     private Client prenedor;
 
-    @OneToOne(fetch= FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vehiclePolissa", nullable = false)
-    @Basic(fetch = FetchType.LAZY)
     private Vehicle vehiclePolissa;
 
     @Column(name = "dataIniciPolissa")
     private Calendar dataIniciPolissa;
-    
+
     @Column(name = "dataFiPolissa")
     private Calendar dataFiPolissa;
 
     @Column(name = "tipusPolissa")
     private boolean tipusPolissa;
-    
+
     @Column(name = "primaPolissa")
     private double primaPolissa;
 
-    public Polissa(Long polissaId, String numeroPolissa, Client prenedor, Vehicle vehiclePolissa, Calendar dataIniciPolissa, Calendar dataFiPolissa, boolean tipusPolissa, double primaPolissa) {
+    @ManyToOne
+    @JoinColumn(name = "asseguradoraId")
+    private Asseguradora asseguradora;
+
+    public Polissa(Long polissaId, String numeroPolissa, Client prenedor, Vehicle vehiclePolissa, Calendar dataIniciPolissa, Calendar dataFiPolissa, boolean tipusPolissa, double primaPolissa, Asseguradora asseguradora) {
         this.polissaId = polissaId;
         this.numeroPolissa = numeroPolissa;
         this.prenedor = prenedor;
@@ -75,6 +76,7 @@ public class Polissa implements Serializable {
         this.dataFiPolissa = dataFiPolissa;
         this.tipusPolissa = tipusPolissa;
         this.primaPolissa = primaPolissa;
+        this.asseguradora = asseguradora;
     }
 
     public Polissa() {
@@ -116,6 +118,10 @@ public class Polissa implements Serializable {
         return primaPolissa;
     }
 
+    public Asseguradora getAsseguradora() {
+        return asseguradora;
+    }
+
     public void setPolissaId(Long polissaId) {
         this.polissaId = polissaId;
     }
@@ -146,6 +152,11 @@ public class Polissa implements Serializable {
 
     public void setPrimaPolissa(double primaPolissa) {
         this.primaPolissa = primaPolissa;
+    }
+    
+    
+    public void setAsseguradora(Asseguradora asseguradora) {
+        this.asseguradora = asseguradora;
     }
 
     @Override
@@ -178,6 +189,4 @@ public class Polissa implements Serializable {
         return "Polissa{" + "polissaId=" + polissaId + ", numeroPolissa=" + numeroPolissa + ", prenedor=" + prenedor + ", vehiclePolissa=" + vehiclePolissa + ", dataIniciPolissa=" + dataIniciPolissa + ", dataFiPolissa=" + dataFiPolissa + ", tipusPolissa=" + tipusPolissa + ", primaPolissa=" + primaPolissa + '}';
     }
 
-    
-    
 }

@@ -18,13 +18,14 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-//@NamedQueries({
-//   @NamedQuery(name=Vehicle.CONSULTA, query="SELECT v FROM Vehicle v WHERE v.vehicleId=:vehicleId")})
-@Table(name = "VEHICLE")
+@NamedQueries({
+@NamedQuery(name = "cercaClient", query = "SELECT c FROM Client c WHERE c.id=:id"),//Query que serveix per obtenir un client mitjançant la seva ID
+@NamedQuery(name = "cercaVehicleMatricula", query = "Select v FROM Vehicle v WHERE v.matricula=:matricula")})//Query que serveix per obtenir un client mitjançant la seva String
+@Table(name = "Vehicle", indexes = {@Index(columnList = "matricula", name = "indexMatricula")})//Asignem nom de la taula i l'index que ens demana l'enunciat.
 public class Vehicle implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    public static final String CONSULTA = "VehicleId";
+    //public static final String CONSULTA = "VehicleId";
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -43,13 +44,17 @@ public class Vehicle implements Serializable {
     @ManyToOne
     @JoinColumn(name="vehiclePropietari")
     private Client propietari;
+    
+    @OneToOne(mappedBy = "vehicle")
+    private Polissa polissa;
 
-    public Vehicle(Long vehicleId, String matricula, String marcaModel, int anyFabricacio, Client propietari) {
+    public Vehicle(Long vehicleId, String matricula, String marcaModel, int anyFabricacio, Client propietari, Polissa polissa) {
         this.vehicleId = vehicleId;
         this.matricula = matricula;
         this.marcaModel = marcaModel;
         this.anyFabricacio = anyFabricacio;
         this.propietari = propietari;
+        this.polissa = polissa;
     }     
     
     public Vehicle(){
@@ -75,6 +80,10 @@ public class Vehicle implements Serializable {
     public Client getPropietari() {
         return propietari;
     }
+    
+    public Polissa getPolissa() {
+        return polissa;
+    }
 
     public void setId(Long vehicleId) {
         this.vehicleId = vehicleId;
@@ -94,6 +103,10 @@ public class Vehicle implements Serializable {
 
     public void setPropietari(Client propietari) {
         this.propietari = propietari;
+    }
+    
+    public void setPolissa(Polissa polissa) {
+        this.polissa = polissa;
     }
 
     

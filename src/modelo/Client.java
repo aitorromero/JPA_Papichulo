@@ -20,8 +20,10 @@ import javax.persistence.Table;
 
 
 @Entity
-//@NamedQueries({@NamedQuery(name=Client.CONSULTA, query="SELECT p FROM Client p WHERE p.nombre=:nombreClient")})
-@Table(name = "CLIENT")
+@NamedQueries({
+@NamedQuery(name = "cercaClientNom", query = "SELECT c FROM Client c WHERE c.nomClient=:nom"),
+@NamedQuery(name="cercaVehiclesClient", query="SELECT v FROM Vehicle v WHERE v.propietari.id=:id"), //Query que busca un Client dins de Polissas pel seu ID
+})@Table(name = "CLIENT")
 
 public class Client implements Serializable {
     
@@ -33,7 +35,7 @@ public class Client implements Serializable {
     @Column(name = "clientId")
     private long clientId;   
     
-    @Column(name = "clientNif", length = 9)
+    @Column(name = "clientNif", length = 9, nullable = false, unique = true)
     private String clientNif;
 
     @Column(name = "nomClient", length = 50)
@@ -44,6 +46,9 @@ public class Client implements Serializable {
     
     @OneToMany(mappedBy="propietari" )
     List<Vehicle> vList;
+    
+    @OneToMany(mappedBy = "cliente")
+    private List<Polissa> listaPolizas;
 
     public Client(Long clientId, String clientNif, String nombre, Adreca adreca) {
         this.clientId = clientId;
@@ -74,6 +79,9 @@ public class Client implements Serializable {
     public Adreca getAdreca() {
         return adreca;
     }
+    public List<Polissa> getListaPolizas() {
+        return listaPolizas;
+    }
 
     public void setClientId(Long clientId) {
         this.clientId = clientId;
@@ -91,7 +99,9 @@ public class Client implements Serializable {
         this.adreca = adreca;
     }
 
-    
+    public void setListaPolizas(List<Polissa> listaPolizas) {
+        this.listaPolizas = listaPolizas;
+    }
     
     @Override
     public int hashCode() {
